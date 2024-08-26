@@ -72,18 +72,14 @@ jobs:
         run: pnpm config set store-dir $PNPM_STORE
       - name: install dependencies
         run: pnpm install
-      - name: build site
-        run: |
-          pnpm run build:lib
-          pnpm run build:site
+
       - name: add content path
         run: |
           sed -i 's/scripts: \[\],/scripts: \[\], manifest: {basePath: "\/mirror\/ant-charts\/",}, base: "\/mirror\/ant-charts\/", publicPath: "\/mirror\/ant-charts\/"/' ./site/.dumirc.ts
       - name: build site
-        id: site
-        run: pnpm run build:site
-        env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
+        run: |
+          pnpm run build:lib
+          pnpm run build:site
 
       - name: zip zite
         uses: montudor/action-zip@v1
