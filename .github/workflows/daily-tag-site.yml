@@ -84,7 +84,7 @@ jobs:
       - name: zip zite
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r ant-charts.zip dist
+          args: zip -qq -r ant-charts.zip site/dist
 
       - name: Generate release tag
         id: tag
